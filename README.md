@@ -1,0 +1,97 @@
+# S Cube Ice Cream Menu
+
+A responsive, modern, and visually appealing digital menu for S Cube Ice Cream & Falooda shop. This single-page website showcases the shop's variety of ice cream flavors, faloodas, milkshakes, and kulfis with an attractive layout and interactive elements.
+
+![S Cube Ice Cream Menu](image(7).png)
+
+## Features
+
+- **Responsive Design**: Adapts perfectly to all device sizes (mobile, tablet, desktop)
+- **Modern UI**: Visually appealing design with animations and decorative elements
+- **Menu Categories**: 
+  - Classic and Exotic Faloodas
+  - Bombay Special Faloodas
+  - Ice Cream Scoops
+  - Kulfis
+  - Milkshakes
+- **Social Media Integration**: Instagram feed embedded in the page
+- **Location Information**: Google Maps integration with directions
+- **Animated Elements**: Floating decorative elements and smooth transitions
+- **Accessibility**: Focus states and semantic markup for better accessibility
+
+## Technologies Used
+
+- HTML5
+- CSS3 (with animations and responsive design)
+- JavaScript (for interactive elements)
+- Google Fonts (Cherry Bomb One, Fredoka)
+- Instagram Embed API
+- Google Maps Embed API
+
+## Design Features
+
+- Curved decorative elements
+- Gradient backgrounds
+- Floating animation for decorative elements
+- Custom-styled section titles and containers
+- Mobile-friendly tappable areas
+- Responsive typography with clamp() for fluid font sizes
+
+## Files Included
+
+- `ice_cream_menu.html` - The main HTML file
+- `image(7).png` - S Cube logo
+- `coffee-machine.png` - Decorative element
+- `falooda-glass.png` - Decorative element
+- `ice-cream-shop.png` - Decorative element
+- `ice-cream-sundae.png` - Decorative element
+- `milkshake.png` - Decorative element
+- `purple-ice-cream.png` - Decorative element
+- `Magic-Box.gif` - Animated icon for the parcel note
+- `gift-icon.png` - Gift icon
+
+## Installation
+
+Simply clone this repository and open `ice_cream_menu.html` in any modern web browser:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/s-cube-ice-cream-menu.git
+cd s-cube-ice-cream-menu
+```
+
+## Deployment
+
+The website can be deployed on any static web hosting service such as GitHub Pages, Netlify, or Vercel.
+
+### Deploying to GitHub Pages
+
+1. Push the repository to GitHub
+2. Go to repository Settings
+3. Navigate to Pages
+4. Select the branch to deploy (usually main)
+5. Save the settings
+6. Your site will be published at `https://YOUR_USERNAME.github.io/s-cube-ice-cream-menu/`
+
+## Business Information
+
+S Cube Ice Cream & Falooda is located at:
+- 📍 86-A1, AMMA KOVIL MAIN STREET
+- OPP VVHS SCHOOL
+- PONNAMARAVATHI - 622407
+- [Get Directions on Google Maps](https://goo.gl/maps/qLHQHzDu4un1mvoD7)
+
+Follow on Instagram: [@s_cube_official_s3](https://www.instagram.com/s_cube_official_s3)
+
+## License
+
+This project is intended for S Cube Ice Cream & Falooda. Please contact the shop owners for permission before reusing any part of this code for commercial purposes.
+
+## Credits
+
+- Fonts from Google Fonts
+- Social media integration via Instagram Embed API
+- Location services via Google Maps Embed API
+
+---
+
+© S CUBE ICE CREAM & FALOODA
