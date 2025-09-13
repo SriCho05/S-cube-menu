@@ -211,19 +211,29 @@
         }
         
         .bombay-title {
-            background: #D2691E;
-            color: white;
-            padding: clamp(6px, 1.5vw, 10px) clamp(10px, 2vw, 18px);
-            border-radius: 20px;
-            font-size: clamp(11px, 1.5vw, 13px);
-            font-weight: bold;
-            text-transform: uppercase;
+            font-family: 'Cherry Bomb One', system-ui;
+            font-size: clamp(18px, 3vw, 24px);
+            font-weight: normal;
+            color: #D2691E;
+            text-align: center;
             margin-bottom: 15px;
-            display: inline-block;
-            box-shadow: 0 3px 8px rgba(210, 105, 30, 0.3);
+            text-shadow: 0 2px 4px rgba(255,255,255,0.8);
         }
         
-        .bombay-item {
+        .size-label-container {
+            display: flex;
+            justify-content: flex-end;
+            margin: 10px 0 5px;
+        }
+        
+        .size-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #D2691E;
+            background-color: rgba(255, 255, 255, 0.6);
+            padding: 2px 8px;
+            border-radius: 12px;
+        }        .bombay-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -904,12 +914,12 @@
     
     <!-- Decorative Food Elements -->
     <!-- Left side elements -->
-    <img src="/images/ice-cream-shop.png" class="food-element ice-cream-shop" alt="Ice Cream Shop">
+    <img src="/images/milkshake.png" class="food-element ice-cream-shop" alt="Milkshake">
     <img src="/images/purple-ice-cream.png" class="food-element purple-ice-cream" alt="Purple Ice Cream Cone">
     <img src="/images/ice-cream-sundae.png" class="food-element ice-cream-sundae" alt="Ice Cream Sundae">
 
     <!-- Right side elements -->
-    <img src="/images/milkshake.png" class="food-element milkshake" alt="Milkshake">
+    <img src="/images/ice-cream-shop.png" class="food-element milkshake" alt="Ice Cream Shop">
     <img src="/images/falooda-glass.png" class="food-element falooda-glass" alt="Falooda Glass">
     <img src="/images/coffee-machine.png" class="food-element coffee-machine" alt="Coffee Machine">
     
@@ -950,6 +960,9 @@
                 
                 <div class="bombay-section">
                     <div class="bombay-title">BOMBAY FALOODA</div>
+                    <div class="size-label-container">
+                        <span class="size-label">Large / Mini</span>
+                    </div>
                     <div class="bombay-item">
                         <span class="name">RAINBOW FALOODA</span>
                         <span class="price">₹120 / ₹90</span>
@@ -964,11 +977,11 @@
                     </div>
                     <div class="bombay-item">
                         <span class="name">FRUIT FALOODA</span>
-                        <span class="price">₹135 / ₹99</span>
+                        <span class="price">₹125 / ₹95</span>
                     </div>
                     <div class="bombay-item">
                         <span class="name">DRY FRUIT FALOODA</span>
-                        <span class="price">₹140 / ₹99</span>
+                        <span class="price">₹130 / ₹99</span>
                     </div>
                 </div>
             </div>
@@ -1002,7 +1015,7 @@
                         <div class="flavors">NUTTY, MALAI, ROSE, HEART POT KULFI</div>
                         <div class="size-price">
                             <span class="size">SLICE</span>
-                            <span class="price">₹60</span>
+                            <span class="price">₹80</span>
                         </div>
                     </div>
                 </div>
