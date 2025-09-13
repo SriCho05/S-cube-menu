@@ -68,9 +68,20 @@ The website can be deployed on any static web hosting service such as GitHub Pag
 1. Push the repository to GitHub
 2. Go to repository Settings
 3. Navigate to Pages
-4. Select the branch to deploy (usually main)
+4. Select the branch to deploy (usually main or master)
 5. Save the settings
 6. Your site will be published at `https://YOUR_USERNAME.github.io/s-cube-ice-cream-menu/`
+
+### Deploying to Vercel (Recommended)
+
+This project is configured for optimal deployment on Vercel:
+
+1. Sign up for a free account at [vercel.com](https://vercel.com)
+2. Click "New Project" and select "Import Git Repository"
+3. Connect your GitHub account and select the "S-cube-menu" repository
+4. Keep the default settings (which will use our included `vercel.json` configuration)
+5. Click "Deploy"
+6. Your site will be published at a Vercel URL (e.g., `s-cube-menu.vercel.app`)
 
 ## Business Information
 
