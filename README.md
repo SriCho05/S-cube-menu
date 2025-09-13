@@ -2,7 +2,7 @@
 
 A responsive, modern, and visually appealing digital menu for S Cube Ice Cream & Falooda shop. This single-page website showcases the shop's variety of ice cream flavors, faloodas, milkshakes, and kulfis with an attractive layout and interactive elements.
 
-![S Cube Ice Cream Menu](image(7).png)
+![S Cube Ice Cream Menu](./images/image(7).png)
 
 ## Features
 
@@ -39,16 +39,19 @@ A responsive, modern, and visually appealing digital menu for S Cube Ice Cream &
 
 ## Files Included
 
-- `ice_cream_menu.html` - The main HTML file
-- `image(7).png` - S Cube logo
-- `coffee-machine.png` - Decorative element
-- `falooda-glass.png` - Decorative element
-- `ice-cream-shop.png` - Decorative element
-- `ice-cream-sundae.png` - Decorative element
-- `milkshake.png` - Decorative element
-- `purple-ice-cream.png` - Decorative element
-- `Magic-Box.gif` - Animated icon for the parcel note
-- `gift-icon.png` - Gift icon
+- `index.html` - The main HTML file (copy of ice_cream_menu.html for web hosting)
+- `ice_cream_menu.html` - Original HTML file
+- `vercel.json` - Configuration for Vercel deployment
+- `/images/` directory containing:
+  - `image(7).png` - S Cube logo
+  - `coffee-machine.png` - Decorative element
+  - `falooda-glass.png` - Decorative element
+  - `ice-cream-shop.png` - Decorative element
+  - `ice-cream-sundae.png` - Decorative element
+  - `milkshake.png` - Decorative element
+  - `purple-ice-cream.png` - Decorative element
+  - `Magic-Box.gif` - Animated icon for the parcel note
+  - `gift-icon.png` - Gift icon
 
 ## Installation
 
@@ -74,6 +77,8 @@ The website can be deployed on any static web hosting service such as GitHub Pag
 
 ### Deploying to Vercel (Recommended)
 
+#### Option 1: Deploy via GitHub
+
 This project is configured for optimal deployment on Vercel:
 
 1. Sign up for a free account at [vercel.com](https://vercel.com)
@@ -82,6 +87,18 @@ This project is configured for optimal deployment on Vercel:
 4. Keep the default settings (which will use our included `vercel.json` configuration)
 5. Click "Deploy"
 6. Your site will be published at a Vercel URL (e.g., `s-cube-menu.vercel.app`)
+
+#### Option 2: Deploy directly with Vercel CLI
+
+Deploy from your local machine without pushing to GitHub:
+
+1. Install Node.js from [nodejs.org](https://nodejs.org/)
+2. Install the Vercel CLI: `npm install -g vercel`
+3. Log in to Vercel: `vercel login`
+4. Navigate to your project directory and run: `vercel`
+5. Follow the prompts to deploy your project
+6. For production deployment, run: `vercel --prod`
+7. Your site will be published at a Vercel URL (e.g., `s-cube.vercel.app`)
 
 ## Business Information
 
