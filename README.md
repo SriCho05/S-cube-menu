@@ -2,7 +2,7 @@
 
 A responsive, modern, and visually appealing digital menu for S Cube Ice Cream & Falooda shop. This single-page website showcases the shop's variety of ice cream flavors, faloodas, milkshakes, and kulfis with an attractive layout and interactive elements.
 
-![S Cube Ice Cream Menu](./images/image(7).png)
+![S Cube Ice Cream Menu](./images/logo.png)
 
 ## Features
 
@@ -43,7 +43,7 @@ A responsive, modern, and visually appealing digital menu for S Cube Ice Cream &
 - `ice_cream_menu.html` - Original HTML file
 - `vercel.json` - Configuration for Vercel deployment
 - `/images/` directory containing:
-  - `image(7).png` - S Cube logo
+  - `logo.png` - S Cube logo (renamed from image(7).png)
   - `coffee-machine.png` - Decorative element
   - `falooda-glass.png` - Decorative element
   - `ice-cream-shop.png` - Decorative element

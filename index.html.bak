@@ -904,21 +904,21 @@
     
     <!-- Decorative Food Elements -->
     <!-- Left side elements -->
-    <img src="/images/ice-cream-shop.png" class="food-element ice-cream-shop" alt="Ice Cream Shop">
-    <img src="/images/purple-ice-cream.png" class="food-element purple-ice-cream" alt="Purple Ice Cream Cone">
-    <img src="/images/ice-cream-sundae.png" class="food-element ice-cream-sundae" alt="Ice Cream Sundae">
+    <img src="./images/ice-cream-shop.png" class="food-element ice-cream-shop" alt="Ice Cream Shop">
+    <img src="./images/purple-ice-cream.png" class="food-element purple-ice-cream" alt="Purple Ice Cream Cone">
+    <img src="./images/ice-cream-sundae.png" class="food-element ice-cream-sundae" alt="Ice Cream Sundae">
 
     <!-- Right side elements -->
-    <img src="/images/milkshake.png" class="food-element milkshake" alt="Milkshake">
-    <img src="/images/falooda-glass.png" class="food-element falooda-glass" alt="Falooda Glass">
-    <img src="/images/coffee-machine.png" class="food-element coffee-machine" alt="Coffee Machine">
+    <img src="./images/milkshake.png" class="food-element milkshake" alt="Milkshake">
+    <img src="./images/falooda-glass.png" class="food-element falooda-glass" alt="Falooda Glass">
+    <img src="./images/coffee-machine.png" class="food-element coffee-machine" alt="Coffee Machine">
     
     <button class="scroll-top" id="scrollTop" title="Go to top">↑</button>
     
     <div class="container">
         <div class="header">
             <div class="logo">
-                <img src="/images/logo.png" alt="S CUBE Logo" class="logo-img">
+                <img src="./images/logo.png" alt="S CUBE Logo" class="logo-img">
             </div>
             <h1 class="menu-title">MENU</h1>
         </div>
@@ -1039,7 +1039,7 @@
         <!-- Parcel Note -->
         <div class="parcel-note">
             <!-- Using the uploaded Magic Box GIF -->
-            <img src="/images/Magic-Box.gif" alt="Magic Box" class="magic-box-icon">
+            <img src="./images/Magic-Box.gif" alt="Magic Box" class="magic-box-icon">
             <span>For Parcel/Takeaway: Additional ₹5 charge applies</span>
         </div>
         
