@@ -532,43 +532,27 @@
             <h2 class="section-title">Ice Cream Scoops</h2>
             <div class="menu-grid">
                 <div class="menu-item">
-                    <div class="item-name">Classic Ice Cream</div>
-                    <div class="item-description">Choose from Vanilla, Chocolate, Strawberry, Butterscotch</div>
+                    <div class="item-name">Classic Scoops</div>
+                    <div class="item-description">Vanilla, Strawberry, Butter Scotch, Rose, Chocolate, Pista, Mango, Black Currant, Pineapple</div>
                     <div class="item-options">
                         <div class="size-option">
-                            <span class="size-name">Single Scoop</span>
+                            <span class="size-name">Large</span>
                             <span class="size-price">₹45</span>
                         </div>
-                        <div class="size-option">
-                            <span class="size-name">Double Scoop</span>
-                            <span class="size-price">₹75</span>
-                        </div>
-                        <div class="size-option">
-                            <span class="size-name">Triple Scoop</span>
-                            <span class="size-price">₹99</span>
-                        </div>
                     </div>
-                    <button class="add-to-cart-btn" onclick="openSizeModal('Classic Ice Cream', [{name: 'Single Scoop', price: 45}, {name: 'Double Scoop', price: 75}, {name: 'Triple Scoop', price: 99}])">Add to Cart</button>
+                    <button class="add-to-cart-btn" onclick="addToCart('Classic Scoops', 'Large', 45)">Add to Cart</button>
                 </div>
 
                 <div class="menu-item">
-                    <div class="item-name">Premium Flavors</div>
-                    <div class="item-description">Kulfi, Pista, Badam, Rose, Kesar, Sitafal</div>
+                    <div class="item-name">Exotic Natural Scoops</div>
+                    <div class="item-description">Raj Bhog, Tender Coconut, Jackfruit, Pink Guava, Red Banana, Malai, Beeda, KitKat, Oreo, Litchi, Choco Brownie, Cotton Candy, Fig & Honey, Blueberry</div>
                     <div class="item-options">
                         <div class="size-option">
-                            <span class="size-name">Single Scoop</span>
-                            <span class="size-price">₹55</span>
-                        </div>
-                        <div class="size-option">
-                            <span class="size-name">Double Scoop</span>
-                            <span class="size-price">₹89</span>
-                        </div>
-                        <div class="size-option">
-                            <span class="size-name">Triple Scoop</span>
-                            <span class="size-price">₹119</span>
+                            <span class="size-name">Large</span>
+                            <span class="size-price">₹50</span>
                         </div>
                     </div>
-                    <button class="add-to-cart-btn" onclick="openSizeModal('Premium Flavors', [{name: 'Single Scoop', price: 55}, {name: 'Double Scoop', price: 89}, {name: 'Triple Scoop', price: 119}])">Add to Cart</button>
+                    <button class="add-to-cart-btn" onclick="addToCart('Exotic Natural Scoops', 'Large', 50)">Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -578,7 +562,45 @@
             <h2 class="section-title">Falooda</h2>
             <div class="menu-grid">
                 <div class="menu-item">
-                    <div class="item-name">Rainbow Falooda</div>
+                    <div class="item-name">Classic Falooda</div>
+                    <div class="item-description">Traditional rose falooda with vermicelli and basil seeds</div>
+                    <div class="item-options">
+                        <div class="size-option">
+                            <span class="size-name">Large</span>
+                            <span class="size-price">₹95</span>
+                        </div>
+                        <div class="size-option">
+                            <span class="size-name">Mini</span>
+                            <span class="size-price">₹75</span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('Classic Falooda', 'Large', 95)">Add Large</button>
+                        <button class="add-to-cart-btn" onclick="addToCart('Classic Falooda', 'Mini', 75)">Add Mini</button>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">Exotic Natural Falooda</div>
+                    <div class="item-description">Premium falooda with natural fruit flavors</div>
+                    <div class="item-options">
+                        <div class="size-option">
+                            <span class="size-name">Large</span>
+                            <span class="size-price">₹99</span>
+                        </div>
+                        <div class="size-option">
+                            <span class="size-name">Mini</span>
+                            <span class="size-price">₹79</span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('Exotic Natural Falooda', 'Large', 99)">Add Large</button>
+                        <button class="add-to-cart-btn" onclick="addToCart('Exotic Natural Falooda', 'Mini', 79)">Add Mini</button>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">Bombay Falooda - Rainbow</div>
                     <div class="item-description">Colorful layers of flavored syrups with falooda sev</div>
                     <div class="item-options">
                         <div class="size-option">
@@ -590,11 +612,14 @@
                             <span class="size-price">₹90</span>
                         </div>
                     </div>
-                    <button class="add-to-cart-btn" onclick="openSizeModal('Rainbow Falooda', [{name: 'Large', price: 120}, {name: 'Mini', price: 90}])">Add to Cart</button>
+                    <div class="item-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('Bombay Falooda - Rainbow', 'Large', 120)">Add Large</button>
+                        <button class="add-to-cart-btn" onclick="addToCart('Bombay Falooda - Rainbow', 'Mini', 90)">Add Mini</button>
+                    </div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="item-name">Royal Falooda</div>
+                    <div class="item-name">Bombay Falooda - Royal</div>
                     <div class="item-description">Premium falooda with dry fruits and kulfi</div>
                     <div class="item-options">
                         <div class="size-option">
@@ -606,23 +631,67 @@
                             <span class="size-price">₹95</span>
                         </div>
                     </div>
-                    <button class="add-to-cart-btn" onclick="openSizeModal('Royal Falooda', [{name: 'Large', price: 125}, {name: 'Mini', price: 95}])">Add to Cart</button>
+                    <div class="item-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('Bombay Falooda - Royal', 'Large', 125)">Add Large</button>
+                        <button class="add-to-cart-btn" onclick="addToCart('Bombay Falooda - Royal', 'Mini', 95)">Add Mini</button>
+                    </div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="item-name">Dry Fruit Falooda</div>
+                    <div class="item-name">Bombay Falooda - Nutty</div>
+                    <div class="item-description">Rich falooda with mixed nuts and caramel</div>
+                    <div class="item-options">
+                        <div class="size-option">
+                            <span class="size-name">Large</span>
+                            <span class="size-price">₹125</span>
+                        </div>
+                        <div class="size-option">
+                            <span class="size-name">Mini</span>
+                            <span class="size-price">₹95</span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('Bombay Falooda - Nutty', 'Large', 125)">Add Large</button>
+                        <button class="add-to-cart-btn" onclick="addToCart('Bombay Falooda - Nutty', 'Mini', 95)">Add Mini</button>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">Bombay Falooda - Fruit</div>
+                    <div class="item-description">Fresh fruit loaded falooda with seasonal fruits</div>
+                    <div class="item-options">
+                        <div class="size-option">
+                            <span class="size-name">Large</span>
+                            <span class="size-price">₹125</span>
+                        </div>
+                        <div class="size-option">
+                            <span class="size-name">Mini</span>
+                            <span class="size-price">₹95</span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('Bombay Falooda - Fruit', 'Large', 125)">Add Large</button>
+                        <button class="add-to-cart-btn" onclick="addToCart('Bombay Falooda - Fruit', 'Mini', 95)">Add Mini</button>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">Bombay Falooda - Dry Fruit</div>
                     <div class="item-description">Rich falooda loaded with assorted dry fruits</div>
                     <div class="item-options">
                         <div class="size-option">
                             <span class="size-name">Large</span>
-                            <span class="size-price">₹140</span>
+                            <span class="size-price">₹130</span>
                         </div>
                         <div class="size-option">
                             <span class="size-name">Mini</span>
                             <span class="size-price">₹99</span>
                         </div>
                     </div>
-                    <button class="add-to-cart-btn" onclick="openSizeModal('Dry Fruit Falooda', [{name: 'Large', price: 140}, {name: 'Mini', price: 99}])">Add to Cart</button>
+                    <div class="item-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('Bombay Falooda - Dry Fruit', 'Large', 130)">Add Large</button>
+                        <button class="add-to-cart-btn" onclick="addToCart('Bombay Falooda - Dry Fruit', 'Mini', 99)">Add Mini</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -636,11 +705,18 @@
                     <div class="item-description">Vanilla, Chocolate, Strawberry, Mango</div>
                     <div class="item-options">
                         <div class="size-option">
-                            <span class="size-name">Regular</span>
-                            <span class="size-price">₹89</span>
+                            <span class="size-name">Large</span>
+                            <span class="size-price">₹99</span>
+                        </div>
+                        <div class="size-option">
+                            <span class="size-name">Mini</span>
+                            <span class="size-price">₹75</span>
                         </div>
                     </div>
-                    <button class="add-to-cart-btn" onclick="addToCart('Classic Milkshake', 'Regular', 89)">Add to Cart</button>
+                    <div class="item-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('Classic Milkshake', 'Large', 99)">Add Large</button>
+                        <button class="add-to-cart-btn" onclick="addToCart('Classic Milkshake', 'Mini', 75)">Add Mini</button>
+                    </div>
                 </div>
 
                 <div class="menu-item">
@@ -648,11 +724,48 @@
                     <div class="item-description">Oreo, KitKat, Brownie, Cotton Candy</div>
                     <div class="item-options">
                         <div class="size-option">
-                            <span class="size-name">Regular</span>
-                            <span class="size-price">₹99</span>
+                            <span class="size-name">Large</span>
+                            <span class="size-price">₹105</span>
+                        </div>
+                        <div class="size-option">
+                            <span class="size-name">Mini</span>
+                            <span class="size-price">₹85</span>
                         </div>
                     </div>
-                    <button class="add-to-cart-btn" onclick="addToCart('Exotic Milkshake', 'Regular', 99)">Add to Cart</button>
+                    <div class="item-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('Exotic Milkshake', 'Large', 105)">Add Large</button>
+                        <button class="add-to-cart-btn" onclick="addToCart('Exotic Milkshake', 'Mini', 85)">Add Mini</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kulfi Section -->
+        <div class="menu-section">
+            <h2 class="section-title">Kulfi</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-name">Kulfi Stick</div>
+                    <div class="item-description">Traditional creamy kulfi on stick</div>
+                    <div class="item-options">
+                        <div class="size-option">
+                            <span class="size-name">Regular</span>
+                            <span class="size-price">₹50</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart('Kulfi Stick', 'Regular', 50)">Add to Cart</button>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">Kulfi Slice</div>
+                    <div class="item-description">Traditional kulfi in slice form</div>
+                    <div class="item-options">
+                        <div class="size-option">
+                            <span class="size-name">Regular</span>
+                            <span class="size-price">₹80</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart('Kulfi Slice', 'Regular', 80)">Add to Cart</button>
                 </div>
             </div>
         </div>
