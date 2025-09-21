@@ -191,6 +191,64 @@
             transform: none;
         }
 
+        .item-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .item-actions .add-to-cart-btn {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .quantity-controls {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+            padding: 8px;
+            background: #f0f0f0;
+            border-radius: 8px;
+        }
+
+        .quantity-controls.show {
+            display: flex;
+        }
+
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 50%;
+            background: #8B5FBF;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: #7B4FAF;
+            transform: scale(1.1);
+        }
+
+        .quantity-display {
+            background: white;
+            border: 2px solid #8B5FBF;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            color: #8B5FBF;
+            min-width: 40px;
+            text-align: center;
+        }
+
         /* Cart Sidebar */
         .cart-sidebar {
             position: fixed;
@@ -492,6 +550,100 @@
             text-align: center;
         }
 
+        /* Flavor Selection Modal */
+        .flavor-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flavor-modal.active {
+            display: flex;
+        }
+
+        .flavor-modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .flavor-modal h3 {
+            color: #6B4E9D;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .flavor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .flavor-option {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 12px;
+        }
+
+        .flavor-option:hover {
+            background: #e9ecef;
+        }
+
+        .flavor-option.selected {
+            background: #6B4E9D;
+            color: white;
+            border-color: #6B4E9D;
+        }
+
+        .flavor-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .flavor-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .flavor-btn.confirm {
+            background: #6B4E9D;
+            color: white;
+        }
+
+        .flavor-btn.cancel {
+            background: #6c757d;
+            color: white;
+        }
+
+        .selected-flavors {
+            margin: 15px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .cart-sidebar {
@@ -501,6 +653,10 @@
 
             .menu-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .flavor-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
             }
         }
     </style>
@@ -540,7 +696,7 @@
                             <span class="size-price">₹45</span>
                         </div>
                     </div>
-                    <button class="add-to-cart-btn" onclick="addToCart('Classic Scoops', 'Large', 45)">Add to Cart</button>
+                    <button class="add-to-cart-btn" onclick="openFlavorModal('Classic Scoops', 'Large', 45, ['Vanilla', 'Strawberry', 'Butter Scotch', 'Rose', 'Chocolate', 'Pista', 'Mango', 'Black Currant', 'Pineapple'])">Add to Cart</button>
                 </div>
 
                 <div class="menu-item">
@@ -552,7 +708,7 @@
                             <span class="size-price">₹50</span>
                         </div>
                     </div>
-                    <button class="add-to-cart-btn" onclick="addToCart('Exotic Natural Scoops', 'Large', 50)">Add to Cart</button>
+                    <button class="add-to-cart-btn" onclick="openFlavorModal('Exotic Natural Scoops', 'Large', 50, ['Raj Bhog', 'Tender Coconut', 'Jackfruit', 'Pink Guava', 'Red Banana', 'Malai', 'Beeda', 'KitKat', 'Oreo', 'Litchi', 'Choco Brownie', 'Cotton Candy', 'Fig & Honey', 'Blueberry'])">Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -919,9 +1075,77 @@
             }
             
             updateCartDisplay();
+            showQuantityControls(itemName, sizeName);
             
             // Show confirmation
             showNotification(`${itemName} (${sizeName}) added to cart!`);
+        }
+
+        function showQuantityControls(itemName, sizeName) {
+            // Find all menu items with this name
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => {
+                const nameElement = item.querySelector('.item-name');
+                if (nameElement && nameElement.textContent.trim() === itemName) {
+                    // Look for existing quantity controls for this size
+                    const cartKey = `${itemName}_${sizeName}`;
+                    let quantityControls = item.querySelector(`[data-cart-key="${cartKey}"]`);
+                    
+                    const cartItem = cart.find(item => item.name === itemName && item.size === sizeName);
+                    
+                    if (!quantityControls && cartItem) {
+                        // Create new quantity controls
+                        quantityControls = document.createElement('div');
+                        quantityControls.className = 'quantity-controls show';
+                        quantityControls.setAttribute('data-cart-key', cartKey);
+                        quantityControls.innerHTML = `
+                            <button class="quantity-btn" onclick="updateCartQuantity('${itemName}', '${sizeName}', -1)">-</button>
+                            <div class="quantity-display">${cartItem.quantity}</div>
+                            <button class="quantity-btn" onclick="updateCartQuantity('${itemName}', '${sizeName}', 1)">+</button>
+                            <small style="margin-left: 10px; color: #666; font-weight: 500;">${sizeName} - In Cart</small>
+                        `;
+                        
+                        // Insert after the item-actions div
+                        const itemActions = item.querySelector('.item-actions');
+                        if (itemActions) {
+                            itemActions.parentNode.insertBefore(quantityControls, itemActions.nextSibling);
+                        } else {
+                            item.appendChild(quantityControls);
+                        }
+                    } else if (quantityControls && cartItem) {
+                        // Update existing quantity display
+                        quantityControls.classList.add('show');
+                        quantityControls.querySelector('.quantity-display').textContent = cartItem.quantity;
+                    }
+                }
+            });
+        }
+
+        function updateCartQuantity(itemName, sizeName, change) {
+            const cartItem = cart.find(item => item.name === itemName && item.size === sizeName);
+            
+            if (cartItem) {
+                cartItem.quantity += change;
+                
+                if (cartItem.quantity <= 0) {
+                    // Remove item from cart
+                    cart = cart.filter(item => !(item.name === itemName && item.size === sizeName));
+                    
+                    // Hide quantity controls
+                    const cartKey = `${itemName}_${sizeName}`;
+                    const quantityControls = document.querySelector(`[data-cart-key="${cartKey}"]`);
+                    if (quantityControls) {
+                        quantityControls.remove();
+                    }
+                    showNotification('Item removed from cart!');
+                } else {
+                    // Update quantity display
+                    showQuantityControls(itemName, sizeName);
+                    showNotification('Quantity updated!');
+                }
+                
+                updateCartDisplay();
+            }
         }
 
         function removeFromCart(id) {
@@ -954,6 +1178,7 @@
                         <div class="cart-item-info">
                             <div class="cart-item-name">${item.name}</div>
                             <div class="cart-item-size">${item.size}</div>
+                            ${item.flavors && item.flavors.length > 0 ? `<div class="cart-item-flavors" style="font-size: 12px; color: #666; margin: 3px 0;">${item.flavors.join(', ')}</div>` : ''}
                             <div class="quantity-controls">
                                 <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
                                 <span style="margin: 0 10px; font-weight: 600;">${item.quantity}</span>
@@ -1093,7 +1318,10 @@
                 mailid: document.getElementById('customerEmail').value || 'N/A',
                 orderId: orderId,
                 utr: utrNumber,
-                items: cart.map(item => `${item.name} (${item.size}) x${item.quantity}`).join(', '),
+                items: cart.map(item => {
+                    const flavorText = item.flavors && item.flavors.length > 0 ? ` - ${item.flavors.join(', ')}` : '';
+                    return `${item.name} (${item.size})${flavorText} x${item.quantity}`;
+                }).join(', '),
                 total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
                 orderDate: new Date().toLocaleString()
             };
@@ -1165,6 +1393,121 @@
             }
         `;
         document.head.appendChild(style);
+
+        // Flavor Selection Modal Functions
+        let currentFlavorSelection = {
+            itemName: '',
+            sizeName: '',
+            price: 0,
+            availableFlavors: [],
+            selectedFlavors: []
+        };
+
+        function openFlavorModal(itemName, sizeName, price, availableFlavors) {
+            currentFlavorSelection = {
+                itemName,
+                sizeName,
+                price,
+                availableFlavors,
+                selectedFlavors: []
+            };
+
+            document.getElementById('flavorModalTitle').textContent = `Select Flavors for ${itemName} (${sizeName})`;
+            
+            const flavorGrid = document.getElementById('flavorGrid');
+            flavorGrid.innerHTML = '';
+            
+            availableFlavors.forEach(flavor => {
+                const flavorOption = document.createElement('div');
+                flavorOption.className = 'flavor-option';
+                flavorOption.textContent = flavor;
+                flavorOption.onclick = () => toggleFlavor(flavor, flavorOption);
+                flavorGrid.appendChild(flavorOption);
+            });
+
+            updateSelectedFlavorsList();
+            document.getElementById('flavorModal').classList.add('active');
+        }
+
+        function toggleFlavor(flavor, element) {
+            const index = currentFlavorSelection.selectedFlavors.indexOf(flavor);
+            if (index === -1) {
+                currentFlavorSelection.selectedFlavors.push(flavor);
+                element.classList.add('selected');
+            } else {
+                currentFlavorSelection.selectedFlavors.splice(index, 1);
+                element.classList.remove('selected');
+            }
+            updateSelectedFlavorsList();
+        }
+
+        function updateSelectedFlavorsList() {
+            const selectedList = document.getElementById('selectedFlavorsList');
+            if (currentFlavorSelection.selectedFlavors.length === 0) {
+                selectedList.textContent = 'None';
+            } else {
+                selectedList.textContent = currentFlavorSelection.selectedFlavors.join(', ');
+            }
+        }
+
+        function closeFlavorModal() {
+            document.getElementById('flavorModal').classList.remove('active');
+            currentFlavorSelection = {
+                itemName: '',
+                sizeName: '',
+                price: 0,
+                availableFlavors: [],
+                selectedFlavors: []
+            };
+        }
+
+        function confirmFlavorSelection() {
+            if (currentFlavorSelection.selectedFlavors.length === 0) {
+                alert('Please select at least one flavor!');
+                return;
+            }
+
+            // Add selected flavors to the item name for display in cart
+            const itemNameWithFlavors = `${currentFlavorSelection.itemName} (${currentFlavorSelection.selectedFlavors.join(', ')})`;
+            
+            addToCartWithFlavors(
+                currentFlavorSelection.itemName,
+                currentFlavorSelection.sizeName,
+                currentFlavorSelection.price,
+                currentFlavorSelection.selectedFlavors
+            );
+            
+            closeFlavorModal();
+        }
+
+        function addToCartWithFlavors(itemName, sizeName, price, selectedFlavors) {
+            const itemKey = `${itemName}_${sizeName}_${selectedFlavors.join('_')}`;
+            const existingItem = cart.find(item => 
+                item.name === itemName && 
+                item.size === sizeName && 
+                JSON.stringify(item.flavors) === JSON.stringify(selectedFlavors)
+            );
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: Date.now(),
+                    name: itemName,
+                    size: sizeName,
+                    price: price,
+                    quantity: 1,
+                    flavors: selectedFlavors
+                });
+            }
+            
+            updateCartDisplay();
+            showQuantityControls(itemName, sizeName);
+            
+            // Show confirmation with flavors
+            const flavorText = selectedFlavors.length > 0 ? ` - ${selectedFlavors.join(', ')}` : '';
+            showNotification(`${itemName} (${sizeName})${flavorText} added to cart!`);
+        }
     </script>
 
     <!-- Checkout Modal -->
@@ -1241,6 +1584,23 @@
                 <div class="step-nav">
                     <button class="step-btn next" onclick="closeCheckout(); location.reload();">Continue Shopping</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Flavor Selection Modal -->
+    <div class="flavor-modal" id="flavorModal">
+        <div class="flavor-modal-content">
+            <h3 id="flavorModalTitle">Select Flavors</h3>
+            <div class="selected-flavors">
+                <strong>Selected:</strong> <span id="selectedFlavorsList">None</span>
+            </div>
+            <div class="flavor-grid" id="flavorGrid">
+                <!-- Flavors will be populated here -->
+            </div>
+            <div class="flavor-actions">
+                <button class="flavor-btn cancel" onclick="closeFlavorModal()">Cancel</button>
+                <button class="flavor-btn confirm" onclick="confirmFlavorSelection()">Add to Cart</button>
             </div>
         </div>
     </div>
