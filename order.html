@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="S CUBE - Order Online - Ice Cream, Falooda, Milkshakes & More">
+    <title>Order Online - S CUBE Ice Cream</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(135deg, #FFE4B5 0%, #F0E68C 50%, #DDA0DD 100%);
+            min-height: 100vh;
+            line-height: 1.4;
+        }
+
+        .header {
+            background: rgba(139, 95, 191, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 20px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cherry Bomb One', sans-serif;
+            font-size: clamp(24px, 4vw, 32px);
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .cart-button {
+            position: relative;
+            background: #FF6B6B;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .cart-button:hover {
+            background: #FF5252;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #FFD700;
+            color: #333;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .menu-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-family: 'Cherry Bomb One', sans-serif;
+            font-size: clamp(20px, 4vw, 28px);
+            color: #8B5FBF;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .item-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .item-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .item-options {
+            margin-bottom: 15px;
+        }
+
+        .size-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+
+        .size-name {
+            font-weight: 500;
+        }
+
+        .size-price {
+            font-family: 'Cherry Bomb One', sans-serif;
+            color: #FF6B6B;
+            font-size: 16px;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #8B5FBF, #9B6FCF);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .add-to-cart-btn:hover {
+            background: linear-gradient(135deg, #7B4FAF, #8B5FBF);
+            transform: translateY(-2px);
+        }
+
+        .add-to-cart-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1001;
+            overflow-y: auto;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            background: #8B5FBF;
+            color: white;
+            padding: 20px;
+            font-size: 20px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-size {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .qty-btn {
+            background: #8B5FBF;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .cart-total {
+            background: #f8f9fa;
+            padding: 20px;
+            border-top: 2px solid #8B5FBF;
+        }
+
+        .total-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #8B5FBF;
+            margin-bottom: 20px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            background: #218838;
+        }
+
+        /* Checkout Modal Styles */
+        .checkout-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+        }
+        
+        .checkout-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .checkout-step {
+            display: none;
+        }
+        
+        .checkout-step.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #FF6B35;
+            outline: none;
+        }
+        
+        .form-group small {
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .order-summary {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .order-summary h4 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .checkout-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .total-amount {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 2px solid #FF6B35;
+            font-size: 18px;
+        }
+        
+        .upi-qr {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f0f8ff;
+            border-radius: 10px;
+        }
+        
+        .qr-placeholder {
+            width: 200px;
+            height: 200px;
+            background: #f0f0f0;
+            margin: 15px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+        
+        .step-nav {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .step-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .step-btn.prev {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .step-btn.next {
+            background: #FF6B35;
+            color: white;
+        }
+        
+        .step-btn:hover {
+            opacity: 0.9;
+        }
+        
+        .step-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .success-message {
+            text-align: center;
+            color: #28a745;
+            padding: 20px;
+        }
+        
+        .success-message h3 {
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+        
+        .success-message p {
+            margin-bottom: 10px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1000;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Delivery Info */
+        .delivery-info {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">S CUBE</div>
+            <button class="cart-button" onclick="toggleCart()">
+                🛒 Cart
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Delivery Info -->
+    <div class="container">
+        <div class="delivery-info">
+            🚚 Free Delivery on Orders Above ₹500 | 📞 Call: +91 XXXXX XXXXX
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        
+        <!-- Ice Cream Section -->
+        <div class="menu-section">
+            <h2 class="section-title">Ice Cream Scoops</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-name">Classic Ice Cream</div>
+                    <div class="item-description">Choose from Vanilla, Chocolate, Strawberry, Butterscotch</div>
+                    <div class="item-options">
+                        <div class="size-option">
+                            <span class="size-name">Single Scoop</span>
+                            <span class="size-price">₹45</span>
+                        </div>
+                        <div class="size-option">
+                            <span class="size-name">Double Scoop</span>
+                            <span class="size-price">₹75</span>
+                        </div>
+                        <div class="size-option">
+                            <span class="size-name">Triple Scoop</span>
+                            <span class="size-price">₹99</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="openSizeModal('Classic Ice Cream', [{name: 'Single Scoop', price: 45}, {name: 'Double Scoop', price: 75}, {name: 'Triple Scoop', price: 99}])">Add to Cart</button>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">Premium Flavors</div>
+                    <div class="item-description">Kulfi, Pista, Badam, Rose, Kesar, Sitafal</div>
+                    <div class="item-options">
+                        <div class="size-option">
+                            <span class="size-name">Single Scoop</span>
+                            <span class="size-price">₹55</span>
+                        </div>
+                        <div class="size-option">
+                            <span class="size-name">Double Scoop</span>
+                            <span class="size-price">₹89</span>
+                        </div>
+                        <div class="size-option">
+                            <span class="size-name">Triple Scoop</span>
+                            <span class="size-price">₹119</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="openSizeModal('Premium Flavors', [{name: 'Single Scoop', price: 55}, {name: 'Double Scoop', price: 89}, {name: 'Triple Scoop', price: 119}])">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Falooda Section -->
+        <div class="menu-section">
+            <h2 class="section-title">Falooda</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-name">Rainbow Falooda</div>
+                    <div class="item-description">Colorful layers of flavored syrups with falooda sev</div>
+                    <div class="item-options">
+                        <div class="size-option">
+                            <span class="size-name">Large</span>
+                            <span class="size-price">₹120</span>
+                        </div>
+                        <div class="size-option">
+                            <span class="size-name">Mini</span>
+                            <span class="size-price">₹90</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="openSizeModal('Rainbow Falooda', [{name: 'Large', price: 120}, {name: 'Mini', price: 90}])">Add to Cart</button>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">Royal Falooda</div>
+                    <div class="item-description">Premium falooda with dry fruits and kulfi</div>
+                    <div class="item-options">
+                        <div class="size-option">
+                            <span class="size-name">Large</span>
+                            <span class="size-price">₹125</span>
+                        </div>
+                        <div class="size-option">
+                            <span class="size-name">Mini</span>
+                            <span class="size-price">₹95</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="openSizeModal('Royal Falooda', [{name: 'Large', price: 125}, {name: 'Mini', price: 95}])">Add to Cart</button>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">Dry Fruit Falooda</div>
+                    <div class="item-description">Rich falooda loaded with assorted dry fruits</div>
+                    <div class="item-options">
+                        <div class="size-option">
+                            <span class="size-name">Large</span>
+                            <span class="size-price">₹140</span>
+                        </div>
+                        <div class="size-option">
+                            <span class="size-name">Mini</span>
+                            <span class="size-price">₹99</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="openSizeModal('Dry Fruit Falooda', [{name: 'Large', price: 140}, {name: 'Mini', price: 99}])">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Milkshake Section -->
+        <div class="menu-section">
+            <h2 class="section-title">Milkshakes</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-name">Classic Milkshake</div>
+                    <div class="item-description">Vanilla, Chocolate, Strawberry, Mango</div>
+                    <div class="item-options">
+                        <div class="size-option">
+                            <span class="size-name">Regular</span>
+                            <span class="size-price">₹89</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart('Classic Milkshake', 'Regular', 89)">Add to Cart</button>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">Exotic Milkshake</div>
+                    <div class="item-description">Oreo, KitKat, Brownie, Cotton Candy</div>
+                    <div class="item-options">
+                        <div class="size-option">
+                            <span class="size-name">Regular</span>
+                            <span class="size-price">₹99</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart('Exotic Milkshake', 'Regular', 99)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sandwich & Fries Section -->
+        <div class="menu-section">
+            <h2 class="section-title">Snacks</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-name">Sandwich</div>
+                    <div class="item-description">Potato (Aloo), Veg options available</div>
+                    <div class="item-options">
+                        <div class="size-option">
+                            <span class="size-name">Regular</span>
+                            <span class="size-price">₹25</span>
+                        </div>
+                        <div class="size-option">
+                            <span class="size-name">Cheese Loaded</span>
+                            <span class="size-price">₹35</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="openSizeModal('Sandwich', [{name: 'Regular', price: 25}, {name: 'Cheese Loaded', price: 35}])">Add to Cart</button>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">French Fries</div>
+                    <div class="item-description">Crispy golden fries</div>
+                    <div class="item-options">
+                        <div class="size-option">
+                            <span class="size-name">Regular</span>
+                            <span class="size-price">₹85</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart('French Fries', 'Regular', 85)">Add to Cart</button>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">Specialty Fries</div>
+                    <div class="item-description">Masala Fries, Peri Peri, Smiley, Cheese Balls</div>
+                    <div class="item-options">
+                        <div class="size-option">
+                            <span class="size-name">Regular</span>
+                            <span class="size-price">₹90</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart('Specialty Fries', 'Regular', 90)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <span>Your Cart</span>
+            <button class="close-cart" onclick="toggleCart()">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-total">
+            <div class="total-amount">Total: ₹<span id="totalAmount">0</span></div>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="closeModals()"></div>
+
+    <!-- Size Selection Modal -->
+    <div id="sizeModal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 15px; z-index: 1002; box-shadow: 0 10px 30px rgba(0,0,0,0.3); max-width: 400px; width: 90%;">
+        <h3 id="modalTitle" style="margin-bottom: 20px; color: #8B5FBF; text-align: center;"></h3>
+        <div id="sizeOptions"></div>
+        <button onclick="closeModals()" style="margin-top: 20px; width: 100%; padding: 10px; background: #ccc; border: none; border-radius: 8px; cursor: pointer;">Cancel</button>
+    </div>
+
+    <script>
+        let cart = [];
+        let currentItem = null;
+
+        function toggleCart() {
+            const sidebar = document.getElementById('cartSidebar');
+            const overlay = document.getElementById('overlay');
+            
+            if (sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+            } else {
+                sidebar.classList.add('open');
+                overlay.classList.add('active');
+            }
+        }
+
+        function closeModals() {
+            document.getElementById('sizeModal').style.display = 'none';
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        function openSizeModal(itemName, sizes) {
+            currentItem = { name: itemName, sizes: sizes };
+            document.getElementById('modalTitle').textContent = `Select Size for ${itemName}`;
+            
+            const optionsContainer = document.getElementById('sizeOptions');
+            optionsContainer.innerHTML = '';
+            
+            sizes.forEach(size => {
+                const button = document.createElement('button');
+                button.textContent = `${size.name} - ₹${size.price}`;
+                button.style.cssText = `
+                    width: 100%;
+                    padding: 15px;
+                    margin: 10px 0;
+                    background: linear-gradient(135deg, #8B5FBF, #9B6FCF);
+                    color: white;
+                    border: none;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    font-weight: 600;
+                    transition: all 0.3s ease;
+                `;
+                button.onmouseover = () => button.style.background = 'linear-gradient(135deg, #7B4FAF, #8B5FBF)';
+                button.onmouseout = () => button.style.background = 'linear-gradient(135deg, #8B5FBF, #9B6FCF)';
+                button.onclick = () => {
+                    addToCart(itemName, size.name, size.price);
+                    closeModals();
+                };
+                optionsContainer.appendChild(button);
+            });
+            
+            document.getElementById('sizeModal').style.display = 'block';
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        function addToCart(itemName, sizeName, price) {
+            const existingItem = cart.find(item => 
+                item.name === itemName && item.size === sizeName
+            );
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: Date.now(),
+                    name: itemName,
+                    size: sizeName,
+                    price: price,
+                    quantity: 1
+                });
+            }
+            
+            updateCartDisplay();
+            
+            // Show confirmation
+            showNotification(`${itemName} (${sizeName}) added to cart!`);
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartDisplay();
+        }
+
+        function updateQuantity(id, change) {
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(id);
+                } else {
+                    updateCartDisplay();
+                }
+            }
+        }
+
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const totalAmount = document.getElementById('totalAmount');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div style="text-align: center; color: #666; padding: 40px;">Your cart is empty</div>';
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-size">${item.size}</div>
+                            <div class="quantity-controls">
+                                <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                                <span style="margin: 0 10px; font-weight: 600;">${item.quantity}</span>
+                                <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-weight: bold; color: #8B5FBF;">₹${item.price * item.quantity}</div>
+                            <button onclick="removeFromCart(${item.id})" style="background: #ff4757; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin-top: 5px; font-size: 12px;">Remove</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            cartCount.textContent = itemCount;
+            cartCount.style.display = itemCount > 0 ? 'flex' : 'none';
+            totalAmount.textContent = total;
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #28a745;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                z-index: 2000;
+                font-weight: 600;
+                box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+                animation: slideIn 0.3s ease;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            // Show checkout modal
+            document.getElementById('checkoutModal').style.display = 'block';
+            
+            // Populate order summary in payment step
+            const checkoutItems = document.getElementById('checkoutItems');
+            const checkoutTotal = document.getElementById('checkoutTotal');
+            
+            checkoutItems.innerHTML = '';
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'checkout-item';
+                itemDiv.innerHTML = `
+                    <span>${item.name} (${item.size}) x${item.quantity}</span>
+                    <span>₹${itemTotal}</span>
+                `;
+                checkoutItems.appendChild(itemDiv);
+            });
+            
+            checkoutTotal.textContent = total;
+        }
+        
+        function closeCheckout() {
+            document.getElementById('checkoutModal').style.display = 'none';
+            // Reset form
+            document.getElementById('customerForm').reset();
+            document.getElementById('utrNumber').value = '';
+            // Show step 1
+            showStep(1);
+        }
+        
+        function showStep(stepNumber) {
+            // Hide all steps
+            document.querySelectorAll('.checkout-step').forEach(step => {
+                step.classList.remove('active');
+            });
+            
+            // Show current step
+            document.getElementById(`step${stepNumber}`).classList.add('active');
+        }
+        
+        function nextStep(currentStep) {
+            if (currentStep === 1) {
+                // Validate customer details
+                const form = document.getElementById('customerForm');
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+                showStep(2);
+            }
+        }
+        
+        function prevStep(currentStep) {
+            showStep(currentStep - 1);
+        }
+        
+        async function submitOrder() {
+            const utrNumber = document.getElementById('utrNumber').value.trim();
+            
+            if (!utrNumber) {
+                alert('Please enter the UTR number');
+                return;
+            }
+            
+            if (utrNumber.length !== 12) {
+                alert('UTR number should be 12 digits');
+                return;
+            }
+            
+            // Generate order ID
+            const orderId = 'SC' + Date.now();
+            document.getElementById('orderId').textContent = orderId;
+            
+            // Prepare order data
+            const orderData = {
+                srno: Date.now(), // Using timestamp as serial number
+                name: document.getElementById('customerName').value,
+                number: document.getElementById('customerPhone').value,
+                address: document.getElementById('customerAddress').value,
+                mailid: document.getElementById('customerEmail').value || 'N/A',
+                orderId: orderId,
+                utr: utrNumber,
+                items: cart.map(item => `${item.name} (${item.size}) x${item.quantity}`).join(', '),
+                total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                orderDate: new Date().toLocaleString()
+            };
+            
+            try {
+                // Send to Google Sheets (you'll need to set up Google Apps Script)
+                await sendToGoogleSheets(orderData);
+                
+                // Show success step
+                showStep(3);
+                
+                // Clear cart
+                cart = [];
+                updateCartDisplay();
+                
+            } catch (error) {
+                console.error('Error submitting order:', error);
+                alert('There was an error submitting your order. Please try again or contact us directly.');
+            }
+        }
+        
+        async function sendToGoogleSheets(orderData) {
+            // Google Apps Script Web App URL for S-CUBE orders
+            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwuoYQ7BsAFhGTJOk8rJ3ZmiUlmfRXjPbi84R6bvdjbzjh33qkLoAzphow_GjERdW17/exec';
+            
+            try {
+                // Create form data instead of JSON
+                const formData = new FormData();
+                Object.keys(orderData).forEach(key => {
+                    formData.append(key, orderData[key]);
+                });
+                
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                console.log('Order sent to Google Sheets successfully');
+                return true;
+                
+            } catch (error) {
+                console.error('Error sending to Google Sheets:', error);
+                
+                // Fallback: try with no-cors mode
+                try {
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(orderData)
+                    });
+                    console.log('Order sent to Google Sheets (no-cors mode)');
+                    return true;
+                } catch (fallbackError) {
+                    console.error('Fallback also failed:', fallbackError);
+                    throw fallbackError;
+                }
+            }
+        }
+
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="checkout-modal">
+        <div class="checkout-content">
+            <!-- Step 1: Customer Details -->
+            <div id="step1" class="checkout-step active">
+                <h3>Customer Details</h3>
+                <form id="customerForm">
+                    <div class="form-group">
+                        <label for="customerName">Full Name*</label>
+                        <input type="text" id="customerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerPhone">Phone Number*</label>
+                        <input type="tel" id="customerPhone" required pattern="[0-9]{10}">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerEmail">Email ID</label>
+                        <input type="email" id="customerEmail">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerAddress">Delivery Address*</label>
+                        <textarea id="customerAddress" rows="3" required placeholder="Enter your complete address with landmark"></textarea>
+                    </div>
+                </form>
+                <div class="step-nav">
+                    <button class="step-btn prev" onclick="closeCheckout()">Cancel</button>
+                    <button class="step-btn next" onclick="nextStep(1)">Continue to Payment</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Payment -->
+            <div id="step2" class="checkout-step">
+                <h3>Payment</h3>
+                <div class="order-summary">
+                    <h4>Order Summary:</h4>
+                    <div id="checkoutItems"></div>
+                    <div class="total-amount">
+                        <strong>Total: ₹<span id="checkoutTotal"></span></strong>
+                    </div>
+                </div>
+                
+                <div class="upi-qr">
+                    <h4>Scan QR Code to Pay</h4>
+                    <div class="qr-placeholder">
+                        UPI QR Code<br>
+                        (Add your QR code image here)
+                    </div>
+                    <p><strong>Or pay to UPI ID: your-upi-id@paytm</strong></p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="utrNumber">Enter UTR Number (Transaction ID)*</label>
+                    <input type="text" id="utrNumber" required placeholder="Enter 12-digit UTR number">
+                    <small>Enter the UTR/Transaction ID from your payment app</small>
+                </div>
+                
+                <div class="step-nav">
+                    <button class="step-btn prev" onclick="prevStep(2)">Back</button>
+                    <button class="step-btn next" onclick="submitOrder()">Submit Order</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Success -->
+            <div id="step3" class="checkout-step">
+                <div class="success-message">
+                    <h3>✅ Order Submitted Successfully!</h3>
+                    <p>Your order has been received and sent to our team.</p>
+                    <p><strong>Order ID:</strong> <span id="orderId"></span></p>
+                    <p>We will contact you shortly to confirm your order and delivery details.</p>
+                    <p>Thank you for choosing S CUBE!</p>
+                </div>
+                <div class="step-nav">
+                    <button class="step-btn next" onclick="closeCheckout(); location.reload();">Continue Shopping</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

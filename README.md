@@ -1,23 +1,41 @@
-# S Cube Ice Cream Menu
+# S Cube Ice Cream & Falooda Website
 
-A responsive, modern, and visually appealing digital menu for S Cube Ice Cream & Falooda shop. This single-page website showcases the shop's variety of ice cream flavors, faloodas, milkshakes, and kulfis with an attractive layout and interactive elements.
+A responsive, modern, and visually appealing website for S Cube Ice Cream & Falooda shop. Features a beautiful landing page and comprehensive digital menu showcasing the shop's variety of ice cream flavors, faloodas, milkshakes, and treats with an attractive layout and interactive elements.
 
 ![S Cube Ice Cream Menu](./images/logo.png)
 
 ## Features
 
-- **Responsive Design**: Adapts perfectly to all device sizes (mobile, tablet, desktop)
-- **Modern UI**: Visually appealing design with animations and decorative elements
+### Landing Page (index.html)
+- **Beautiful Hero Section**: Eye-catching design with animated elements
+- **Feature Highlights**: Premium ice cream, authentic falooda, and fresh milkshakes
+- **Interactive Elements**: Hover effects, animations, and sparkle effects
+- **Call-to-Action**: Direct link to menu page
+- **Social Media Integration**: Instagram follow button
+
+### Menu Page (menu.html)
+- **Comprehensive Menu**: Complete digital menu with all products and prices
 - **Menu Categories**: 
   - Classic and Exotic Faloodas
-  - Bombay Special Faloodas
+  - Bombay Special Faloodas (with Large/Mini options)
+
+### Order Online Page (order.html)
+- **E-commerce Functionality**: Complete online ordering system
+- **Shopping Cart**: Add items, modify quantities, remove items
+- **Size Selection Modal**: Choose sizes/variants for products
+- **Real-time Updates**: Cart count and total amount updates instantly
+- **Responsive Design**: Works perfectly on all devices
+- **Order Management**: Checkout process with order summary
   - Ice Cream Scoops
   - Kulfis
-  - Milkshakes
-- **Social Media Integration**: Instagram feed embedded in the page
-- **Location Information**: Google Maps integration with directions
+  - Milkshakes (Classic & Exotic Natural)
+  - Sandwiches (Potato/Aloo varieties)
+  - Fries (French, Masala, Smiley, Peri Peri, Cheese Balls)
+- **Responsive Design**: Adapts perfectly to all device sizes
+- **Modern UI**: Cherry Bomb One fonts and appealing color schemes
 - **Animated Elements**: Floating decorative elements and smooth transitions
-- **Accessibility**: Focus states and semantic markup for better accessibility
+- **Social Media Integration**: Instagram feed embedded
+- **Location Information**: Contact details and directions
 
 ## Technologies Used
 
@@ -39,8 +57,9 @@ A responsive, modern, and visually appealing digital menu for S Cube Ice Cream &
 
 ## Files Included
 
-- `index.html` - The main HTML file (copy of ice_cream_menu.html for web hosting)
-- `ice_cream_menu.html` - Original HTML file
+- `index.html` - Landing page with hero section and navigation
+- `menu.html` - Display-only menu page (original ice_cream_menu.html)
+- `order.html` - E-commerce ordering page with shopping cart functionality
 - `vercel.json` - Configuration for Vercel deployment
 - `/images/` directory containing:
   - `logo.png` - S Cube logo (renamed from image(7).png)
