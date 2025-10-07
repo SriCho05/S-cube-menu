@@ -5,396 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="S CUBE - Premium Ice Cream & Falooda Shop - Indulge in our delicious ice creams, faloodas, milkshakes and treats">
     <meta name="keywords" content="ice cream, falooda, milkshakes, desserts, treats, S CUBE">
-    <meta name="theme-color" content="#8B5FBF">
     <title>S CUBE - Premium Ice Cream & Falooda</title>
-    
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Fredoka:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Fredoka', sans-serif;
-            background: linear-gradient(135deg, #8B5FBF 0%, #9B6FCF 30%, #AB7FDF 60%, #FFB6C1 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Animated Background Elements */
-        .bg-element {
-            position: absolute;
-            opacity: 0.1;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .bg-element:nth-child(1) {
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .bg-element:nth-child(2) {
-            top: 20%;
-            right: 15%;
-            animation-delay: 1s;
-        }
-
-        .bg-element:nth-child(3) {
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 2s;
-        }
-
-        .bg-element:nth-child(4) {
-            bottom: 10%;
-            right: 10%;
-            animation-delay: 3s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-            padding-top: 30px;
-        }
-
-        .logo {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 30px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .logo img {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .main-title {
-            font-family: 'Cherry Bomb One', cursive;
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            color: #fff;
-            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-        }
-
-        .subtitle {
-            font-family: 'Pacifico', cursive;
-            font-size: clamp(1.2rem, 4vw, 2rem);
-            color: #FFE4E1;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            margin-bottom: 40px;
-        }
-
-        /* Hero Section */
-        .hero {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #8B5FBF, #FFB6C1);
-        }
-
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, #8B5FBF, #AB7FDF);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-        }
-
-        .feature-title {
-            font-family: 'Cherry Bomb One', cursive;
-            font-size: 1.5rem;
-            color: #8B5FBF;
-            margin-bottom: 15px;
-        }
-
-        .feature-description {
-            color: #666;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .menu-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
-            color: white;
-            padding: 20px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-family: 'Cherry Bomb One', cursive;
-            font-size: 1.3rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .menu-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.6);
-        }
-
-        .menu-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .menu-button:hover::before {
-            left: 100%;
-        }
-
-        /* Instagram Section */
-        .instagram-section {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .instagram-title {
-            font-family: 'Cherry Bomb One', cursive;
-            font-size: 1.8rem;
-            color: #8B5FBF;
-            margin-bottom: 20px;
-        }
-
-        .instagram-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #F56040, #E1306C, #833AB4);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(131, 58, 180, 0.3);
-        }
-
-        .instagram-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(131, 58, 180, 0.4);
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.9rem;
-            padding: 20px 0;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-
-            .hero {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .feature-card {
-                padding: 20px;
-            }
-
-            .menu-button {
-                padding: 15px 30px;
-                font-size: 1.1rem;
-            }
-        }
-
-        /* Sparkle Animation */
-        @keyframes sparkle {
-            0%, 100% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1); }
-        }
-
-        .sparkle {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            animation: sparkle 2s ease-in-out infinite;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Animated Background Elements -->
-    <div class="bg-element">🍦</div>
-    <div class="bg-element">🥤</div>
-    <div class="bg-element">🍨</div>
-    <div class="bg-element">🧁</div>
-
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <div class="logo">
-                <img src="/images/logo.png" alt="S CUBE Logo">
+    <header class="header">
+        <nav class="nav container">
+            <a href="#" class="nav__logo">S CUBE</a>
+            <div class="nav__menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="menu.html" class="nav__link">Menu</a></li>
+                    <li class="nav__item"><a href="order.html" class="nav__link">Order Online</a></li>
+                    <li class="nav__item"><a href="https://www.instagram.com/s_cube_official_s3/" target="_blank" class="nav__link">Instagram</a></li>
+                </ul>
             </div>
-            <h1 class="main-title">S CUBE</h1>
-            <p class="subtitle">Premium Ice Cream & Falooda</p>
-        </header>
+            <div class="nav__toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="theme-switcher">
+                <i class="fas fa-moon"></i>
+            </div>
+        </nav>
+    </header>
 
-        <!-- Hero Section -->
+    <main>
         <section class="hero">
-            <div class="feature-card">
-                <div class="feature-icon">🍦</div>
-                <h3 class="feature-title">Premium Ice Cream</h3>
-                <p class="feature-description">Indulge in our handcrafted ice cream made with the finest ingredients. From classic vanilla to exotic flavors, we have something for everyone.</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🥤</div>
-                <h3 class="feature-title">Authentic Falooda</h3>
-                <p class="feature-description">Experience the traditional taste of Bombay Falooda with our signature Royal, Rainbow, and Fruit varieties. A perfect blend of flavors and textures.</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🥛</div>
-                <h3 class="feature-title">Fresh Milkshakes</h3>
-                <p class="feature-description">Refresh yourself with our thick and creamy milkshakes. From classic chocolate to exotic natural flavors, each sip is pure bliss.</p>
+            <div class="hero__container container">
+                <div class="hero__content">
+                    <h1 class="hero__title">Indulge in Sweet Bliss</h1>
+                    <p class="hero__subtitle">Experience the finest handcrafted ice creams, authentic faloodas, and refreshing milkshakes.</p>
+                    <a href="order.html" class="button">Order Now</a>
+                </div>
+                <div class="hero__image">
+                    <img src="ice-cream-sundae.png" alt="Delicious Ice Cream Sundae">
+                </div>
             </div>
         </section>
 
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-                <a href="menu.html" class="menu-button">
-                    🍨 VIEW OUR MENU 🍨
-                </a>
-                <a href="order.html" class="menu-button" style="background: linear-gradient(135deg, #28a745, #20c997);">
-                    🛒 ORDER ONLINE 🛒
-                </a>
+        <section class="featured-products section">
+            <div class="container">
+                <h2 class="section__title">Our Specialties</h2>
+                <div class="featured__container">
+                    <div class="product-card">
+                        <img src="ice-cream-shop.png" alt="Premium Ice Cream" class="product-card__image">
+                        <h3 class="product-card__title">Premium Ice Cream</h3>
+                        <p class="product-card__description">Made with the finest ingredients and bursting with flavor.</p>
+                    </div>
+                    <div class="product-card">
+                        <img src="falooda-glass.png" alt="Authentic Falooda" class="product-card__image">
+                        <h3 class="product-card__title">Authentic Falooda</h3>
+                        <p class="product-card__description">A traditional delight with a perfect blend of textures.</p>
+                    </div>
+                    <div class="product-card">
+                        <img src="milkshake.png" alt="Fresh Milkshakes" class="product-card__image">
+                        <h3 class="product-card__title">Fresh Milkshakes</h3>
+                        <p class="product-card__description">Thick, creamy, and blended to perfection.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Instagram Section -->
-        <section class="instagram-section">
-            <h3 class="instagram-title">Follow Our Sweet Journey</h3>
-            <p>Stay updated with our latest creations and special offers!</p>
-            <br>
-            <a href="https://www.instagram.com/s_cube_official_s3/" target="_blank" class="instagram-button">
-                📸 Follow us on Instagram
-            </a>
+        <section class="cta section">
+            <div class="cta__container container">
+                <h2 class="cta__title">Ready to Treat Yourself?</h2>
+                <p class="cta__description">Explore our full menu or place an order for delivery.</p>
+                <div class="cta__buttons">
+                    <a href="menu.html" class="button button--secondary">View Menu</a>
+                    <a href="order.html" class="button">Order Online</a>
+                </div>
+            </div>
         </section>
-    </div>
+    </main>
 
-    <!-- Footer -->
     <footer class="footer">
-        <div>© 2024 S CUBE ICE CREAM & FALOODA</div>
-        <div>Crafted with ❤️ for ice cream lovers</div>
+        <div class="footer__container container">
+            <p>&copy; 2025 S CUBE ICE CREAM & FALOODA. All Rights Reserved.</p>
+            <p>Crafted with ❤️ for ice cream lovers</p>
+        </div>
     </footer>
 
-    <script>
-        // Add sparkle effects
-        function createSparkle() {
-            const sparkle = document.createElement('div');
-            sparkle.className = 'sparkle';
-            sparkle.style.left = Math.random() * 100 + 'vw';
-            sparkle.style.top = Math.random() * 100 + 'vh';
-            sparkle.style.animationDelay = Math.random() * 2 + 's';
-            document.body.appendChild(sparkle);
-
-            setTimeout(() => {
-                sparkle.remove();
-            }, 3000);
-        }
-
-        // Create sparkles periodically
-        setInterval(createSparkle, 800);
-
-        // Smooth scroll for menu button
-        document.querySelector('.menu-button').addEventListener('click', function(e) {
-            // Add a small animation before navigation
-            this.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1)';
-            }, 100);
-        });
-    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </body>
 </html>
